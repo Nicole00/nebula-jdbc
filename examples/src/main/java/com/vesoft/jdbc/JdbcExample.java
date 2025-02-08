@@ -5,15 +5,14 @@
 
 package com.vesoft.jdbc;
 
-import com.vesoft.nebula.jdbc.NebulaDriver;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class JdbcExample {
-    public static void main(String[] args) throws SQLException {
-        DriverManager.registerDriver(new NebulaDriver());
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        Class.forName("com.vesoft.nebula.jdbc.NebulaDriver");
         String url = "jdbc:nebula://192.168.8.6:3820/?user=root&password=Nebula123";
         try {
             Connection con    = DriverManager.getConnection(url);
