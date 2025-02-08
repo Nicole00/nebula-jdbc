@@ -1,18 +1,17 @@
-/* Copyright (c) 2024 vesoft inc. All rights reserved.
+/* Copyright (c) 2025 vesoft inc. All rights reserved.
  *
  * This source code is licensed under Apache 2.0 License.
  */
 
-package com.vesoft.nebula5.jdbc;
+package com.vesoft.nebula.jdbc;
 
 import com.vesoft.nebula.driver.graph.data.Edge;
 import com.vesoft.nebula.driver.graph.data.EmbeddingVector;
 import com.vesoft.nebula.driver.graph.data.NRecord;
 import com.vesoft.nebula.driver.graph.data.Node;
 import com.vesoft.nebula.driver.graph.data.Path;
-import com.vesoft.nebula.driver.graph.data.ResultSet;
 import com.vesoft.nebula.driver.graph.decode.ColumnType;
-import com.vesoft.nebula5.jdbc.values.NebulaRecord;
+import com.vesoft.nebula.jdbc.values.NebulaRecord;
 import java.math.BigDecimal;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;

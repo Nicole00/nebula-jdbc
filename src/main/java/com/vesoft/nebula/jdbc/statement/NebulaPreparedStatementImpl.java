@@ -1,12 +1,11 @@
-/* Copyright (c) 2024 vesoft inc. All rights reserved.
+/* Copyright (c) 2025 vesoft inc. All rights reserved.
  *
  * This source code is licensed under Apache 2.0 License.
  */
 
-package com.vesoft.nebula5.jdbc.statement;
+package com.vesoft.nebula.jdbc.statement;
 
-import com.sun.java.swing.plaf.windows.WindowsTabbedPaneUI;
-import com.vesoft.nebula5.jdbc.NebulaConnection;
+import com.vesoft.nebula.jdbc.NebulaConnection;
 import java.io.InputStream;
 import java.io.Reader;
 import java.math.BigDecimal;
@@ -31,9 +30,6 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;

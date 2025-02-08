@@ -1,16 +1,14 @@
-/* Copyright (c) 2024 vesoft inc. All rights reserved.
+/* Copyright (c) 2025 vesoft inc. All rights reserved.
  *
  * This source code is licensed under Apache 2.0 License.
  */
 
-package com.vesoft.nebula5.jdbc;
+package com.vesoft.nebula.jdbc;
 
 import com.vesoft.nebula.driver.graph.data.ResultSet;
 import com.vesoft.nebula.driver.graph.data.ValueWrapper;
-import com.vesoft.nebula5.jdbc.statement.NebulaStatementImpl;
-import com.vesoft.nebula5.jdbc.values.NebulaRecord;
-import org.bouncycastle.util.Times;
-import org.checkerframework.checker.units.qual.A;
+import com.vesoft.nebula.jdbc.statement.NebulaStatementImpl;
+import com.vesoft.nebula.jdbc.values.NebulaRecord;
 import java.io.InputStream;
 import java.io.Reader;
 import java.math.BigDecimal;
@@ -36,7 +34,6 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -96,6 +93,12 @@ public class NebulaResultSet implements java.sql.ResultSet {
         return value.isNull();
     }
 
+    /**
+     * get the {@link ValueWrapper} at given column index
+     *
+     * @param columnIndex the given column index
+     * @return the ValueWrapper at given column index
+     */
     private ValueWrapper getValueByColumnIndex(int columnIndex) throws SQLException {
         assertIsOpen();
         assertColumnIndexIsPresent(columnIndex);
@@ -104,6 +107,12 @@ public class NebulaResultSet implements java.sql.ResultSet {
         return this.value;
     }
 
+    /**
+     * get the {@link ValueWrapper} pf given column name
+     *
+     * @param columnName the given column name
+     * @return the ValueWrapper of given column name
+     */
     private ValueWrapper getValueByColumnName(String columnName) throws SQLException {
         assertIsOpen();
         assertColumnNameIsPresent(columnName);

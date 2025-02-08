@@ -1,11 +1,11 @@
-/* Copyright (c) 2024 vesoft inc. All rights reserved.
+/* Copyright (c) 2025 vesoft inc. All rights reserved.
  *
  * This source code is licensed under Apache 2.0 License.
  */
 
-package com.vesoft.nebula5.jdbc;
+package com.vesoft.nebula.jdbc;
 
-import com.vesoft.nebula5.jdbc.statement.NebulaPreparedStatementImpl;
+import com.vesoft.nebula.jdbc.statement.NebulaPreparedStatementImpl;
 import java.sql.ParameterMetaData;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;

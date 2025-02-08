@@ -1,16 +1,15 @@
-/* Copyright (c) 2024 vesoft inc. All rights reserved.
+/* Copyright (c) 2025 vesoft inc. All rights reserved.
  *
  * This source code is licensed under Apache 2.0 License.
  */
 
-package com.vesoft.nebula5.jdbc;
+package com.vesoft.nebula.jdbc;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Properties;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UrlParser {
@@ -29,8 +28,8 @@ public class UrlParser {
         String graphName = null;
         if (path != null && !path.isEmpty() && !path.equals("/")) {
             graphName = path.substring(1);
+            jdbcProps.put(NebulaPropertyKey.DBNAME.getKeyName(), graphName);
         }
-        jdbcProps.put(NebulaPropertyKey.DBNAME.getKeyName(), graphName);
         jdbcProps.put(NebulaPropertyKey.ADDRESS.getKeyName(), getAddress(jdbcUrl));
         return jdbcProps;
     }

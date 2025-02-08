@@ -1,12 +1,12 @@
-/* Copyright (c) 2024 vesoft inc. All rights reserved.
+/* Copyright (c) 2025 vesoft inc. All rights reserved.
  *
  * This source code is licensed under Apache 2.0 License.
  */
 
-package com.vesoft.nebula5.jdbc.statement;
+package com.vesoft.nebula.jdbc.statement;
 
-import com.vesoft.nebula5.jdbc.NebulaConnection;
-import com.vesoft.nebula5.jdbc.NebulaResultSet;
+import com.vesoft.nebula.jdbc.NebulaConnection;
+import com.vesoft.nebula.jdbc.NebulaResultSet;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -48,7 +48,6 @@ public class NebulaStatementImpl extends NebulaStatement {
     }
 
 
-
     @Override
     public boolean execute(String gql) throws SQLException {
         com.vesoft.nebula.driver.graph.data.ResultSet result = connection.execute(gql);
@@ -57,7 +56,6 @@ public class NebulaStatementImpl extends NebulaStatement {
                                                  gql,
                                                  result.getErrorCode().code,
                                                  result.getErrorMessage()));
-
         }
         currentResultSet = new NebulaResultSet(result, this);
         currentAffectNum = (int) (result.getExtraInfo().getAffectedNodes() + result.getExtraInfo().getAffectedEdges());
@@ -95,7 +93,6 @@ public class NebulaStatementImpl extends NebulaStatement {
     public Connection getConnection() throws SQLException {
         return connection;
     }
-
 
 
     @Override

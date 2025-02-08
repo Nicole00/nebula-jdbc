@@ -1,15 +1,14 @@
-/* Copyright (c) 2024 vesoft inc. All rights reserved.
+/* Copyright (c) 2025 vesoft inc. All rights reserved.
  *
  * This source code is licensed under Apache 2.0 License.
  */
 
-package com.vesoft.nebula5.jdbc;
+package com.vesoft.nebula.jdbc;
 
 import com.vesoft.nebula.driver.graph.data.ResultSet;
 import com.vesoft.nebula.driver.graph.net.NebulaClient;
-import com.vesoft.nebula.driver.graph.net.NebulaPool;
-import com.vesoft.nebula5.jdbc.statement.NebulaPreparedStatementImpl;
-import com.vesoft.nebula5.jdbc.statement.NebulaStatementImpl;
+import com.vesoft.nebula.jdbc.statement.NebulaPreparedStatementImpl;
+import com.vesoft.nebula.jdbc.statement.NebulaStatementImpl;
 import org.slf4j.LoggerFactory;
 import java.sql.Array;
 import java.sql.Blob;
@@ -52,7 +51,28 @@ public class NebulaConnection implements Connection {
         builder.withRequestTimeoutMills((int) properties.getOrDefault(NebulaPropertyKey.REQUESTTIMEOUT.getKeyName(), 5000));
         try {
             client = builder.build();
+            if (properties.containsKey(NebulaPropertyKey.SCHEMA.getKeyName())) {
+                ResultSet res = client.execute(String.format("SESSION SET SCHEMA \"%s\"", properties.getProperty(NebulaPropertyKey.SCHEMA.getKeyName())));
+                if (!res.isSucceeded()) {
+                    throw new RuntimeException("SESSION SET SCHEMA failed: " + res.getErrorMessage());
+                }
+            }
+            if (properties.containsKey(NebulaPropertyKey.DBNAME.getKeyName())) {
+                ResultSet res = client.execute("SESSION SET GRAPH " + properties.getProperty(NebulaPropertyKey.DBNAME.getKeyName()));
+                if (!res.isSucceeded()) {
+                    throw new RuntimeException("SESSION SET GRAPH failed: " + res.getErrorMessage());
+                }
+            }
+            if (properties.containsKey(NebulaPropertyKey.TIMEZONE.getKeyName())) {
+                ResultSet res = client.execute(String.format("SESSION SET TIME ZONE \"%s\"", properties.getProperty(NebulaPropertyKey.TIMEZONE.getKeyName())));
+                if (!res.isSucceeded()) {
+                    throw new RuntimeException("SESSION SET TIME ZONE failed: " + res.getErrorMessage());
+                }
+            }
         } catch (Exception e) {
+            if (client != null) {
+                client.close();
+            }
             throw new SQLException(e);
         }
     }
